@@ -7,6 +7,7 @@ import { sequelize } from './config/database';
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRoutes';
 import roomRoutes from "./routes/roomRoutes";
+import equipmentRoutes from './routes/equipmentRoutes'; 
 
 // Initialisation d'Express
 const app = express();
@@ -17,7 +18,7 @@ app.use(cors());
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use("/rooms", roomRoutes); 
-
+app.use('/api', equipmentRoutes); 
 // Route de test
 app.get('/', (req, res) => {
   res.send('Bienvenue sur le serveur Booking Classroom!');
