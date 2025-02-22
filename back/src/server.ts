@@ -1,20 +1,36 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import { connectDB } from "./config/database";
-
-// Charger les variables d'environnement
+// filepath: /C:/Users/utilisateur/Desktop/Booking_Classroom/Booking_Classroom/back/src/server.ts
+import dotenv from 'dotenv';
 dotenv.config();
+
+import express from 'express';
+import cors from 'cors';
+import { sequelize } from './config/database';
+import userRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRoutes';
 
 // Initialisation d'Express
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connexion à la base de données
-connectDB();
+// Routes
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
+
+// Route de test
+app.get('/', (req, res) => {
+  res.send('Bienvenue sur le serveur Booking Classroom!');
+});
+
+// Connexion à la base de données et synchronisation des modèles
+sequelize.sync()
+  .then(() => {
+    console.log('Base de données synchronisée');
+  })
+  .catch((error) => {
+    console.error('Erreur de synchronisation de la base de données :', error);
+  });
 
 // Démarrage du serveur
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Serveur lancé sur le port ${PORT}`));
-
