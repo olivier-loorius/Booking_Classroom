@@ -1,4 +1,3 @@
-// filepath: /C:/Users/utilisateur/Desktop/Booking_Classroom/Booking_Classroom/back/src/server.ts
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,6 +6,7 @@ import cors from 'cors';
 import { sequelize } from './config/database';
 import userRoutes from './routes/userRoutes';
 import authRoutes from './routes/authRoutes';
+import roomRoutes from "./routes/roomRoutes";
 
 // Initialisation d'Express
 const app = express();
@@ -16,6 +16,7 @@ app.use(cors());
 // Routes
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
+app.use("/rooms", roomRoutes); 
 
 // Route de test
 app.get('/', (req, res) => {

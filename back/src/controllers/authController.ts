@@ -1,4 +1,3 @@
-// filepath: /C:/Users/utilisateur/Desktop/Booking_Classroom/Booking_Classroom/back/src/controllers/authController.ts
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import { jwtConfig } from '../config/auth';
