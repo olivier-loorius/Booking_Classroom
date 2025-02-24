@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Room from "../models/rooms";
+import Room from "../models/room";
 
 // ✅ Créer une salle
 export const createRoom = async (req: Request, res: Response) => {

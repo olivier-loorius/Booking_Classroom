@@ -4,6 +4,7 @@ import request from 'supertest';
 import express from 'express';
 import reservationRoutes from '../src/routes/reservationRoutes';
 import { sequelize } from '../src/config/database';
+import { expect, beforeAll, afterAll } from '@jest/globals';
 
 // Initialisation d'Express
 const app = express();
