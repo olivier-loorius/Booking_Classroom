@@ -1,13 +1,13 @@
-import { DataTypes, Model } from "sequelize";
-import { sequelize } from "../config/database";
-import User from "./user"; // ✅ Vérifie que cet import est bien présent
+import { DataTypes, Model } from 'sequelize';
+import { sequelize } from '../config/database';
+import User from './user';
 
 class Notification extends Model {
   public id!: string;
   public userId!: string;
   public message!: string;
-  public read!: boolean;
   public createdAt!: Date;
+  public read!: boolean;
 }
 
 Notification.init(
@@ -20,28 +20,30 @@ Notification.init(
     userId: {
       type: DataTypes.CHAR(36),
       allowNull: false,
+      references: {
+        model: User,
+        key: 'id',
+      },
     },
     message: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    read: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    read: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   {
     sequelize,
-    tableName: "notifications",
+    tableName: 'notifications',
     timestamps: false,
   }
 );
-
-// ✅ Vérifie cette relation :
-Notification.belongsTo(User, { foreignKey: "userId", onDelete: "CASCADE" });
 
 export default Notification;

@@ -12,10 +12,20 @@ RoomEquipment.init(
   {
     roomId: {
       type: DataTypes.CHAR(36),
+      allowNull: false,
+      references: {
+        model: Room,
+        key: 'id',
+      },
       primaryKey: true,
     },
     equipmentId: {
       type: DataTypes.CHAR(36),
+      allowNull: false,
+      references: {
+        model: Equipment,
+        key: 'id',
+      },
       primaryKey: true,
     },
   },
@@ -25,9 +35,5 @@ RoomEquipment.init(
     timestamps: false,
   }
 );
-
-// Définir les relations
-Room.belongsToMany(Equipment, { through: RoomEquipment });
-Equipment.belongsToMany(Room, { through: RoomEquipment });
 
 export default RoomEquipment;

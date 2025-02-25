@@ -26,7 +26,7 @@ Equipment.init(
   },
   {
     sequelize,
-    tableName: 'equipment',
+    tableName: 'equipments', // Nom de la table corrigé
     timestamps: false,
   }
 );
